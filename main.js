@@ -14,7 +14,7 @@ const car = new Car(road.getLaneCenter(1), 100, 30, 50); // pos x, y, 30 w, 50h
 animate();
 
 function animate() {
-  car.update();
+  car.update(road.borders);
   canvas.height = window.innerHeight;
 
   ctx.save();
