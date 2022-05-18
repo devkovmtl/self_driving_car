@@ -22,7 +22,7 @@ class Car {
     this.controls = new Controls(controlType);
   }
 
-  draw(ctx, color) {
+  draw(ctx, color, drawSensor = false) {
     // ctx.save();
     // ctx.translate(this.x, this.y);
     // ctx.rotate(-this.angle);
@@ -53,7 +53,7 @@ class Car {
       ctx.lineTo(this.polygon[i].x, this.polygon[i].y);
     }
     ctx.fill();
-    if (this.sensor) {
+    if (this.sensor && drawSensor) {
       this.sensor.draw(ctx);
     }
   }
