@@ -9,7 +9,8 @@ class NeuralNetwork {
   static feedForward(givenInputs, network) {
     let outputs = Level.feedForward(givenInputs, network.levels[0]);
     // putting output of previous level new output
-    for (let i = 1; network.levels.length; i++) {
+    for (let i = 1; i < network.levels.length; i++) {
+      //   console.log(network.levels[i]);
       outputs = Level.feedForward(outputs, network.levels[i]);
     }
     return outputs;
@@ -24,7 +25,7 @@ class Level {
   // neurons input
   constructor(inputCount, outputCount) {
     this.inputs = new Array(inputCount);
-    this.ouputs = new Array(outputCount);
+    this.outputs = new Array(outputCount);
     // each ouput neurons has a biases // value of which it will fire
     this.biases = new Array(outputCount);
 
@@ -51,6 +52,7 @@ class Level {
   }
 
   static feedForward(givenInputs, level) {
+    console.log(level);
     for (let i = 0; i < level.inputs.length; i++) {
       level.inputs[i] = givenInputs[i];
     }
@@ -60,6 +62,7 @@ class Level {
       for (let j = 0; j < level.inputs.length; j++) {
         sum += level.inputs[j] * level.weights[j][i];
       }
+
       if (sum > level.biases[i]) {
         level.outputs[i] = 1;
       } else {
