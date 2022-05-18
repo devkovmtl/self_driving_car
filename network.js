@@ -15,6 +15,24 @@ class NeuralNetwork {
     }
     return outputs;
   }
+
+  static mutate(network, amount = 1) {
+    network.levels.forEach((level) => {
+      for (let i = 0; i < level.biases.length; i++) {
+        level.biases[i] = lerp(level.biases[i], Math.random() * 2 - 1, amount);
+      }
+
+      for (let i = 0; level.weights.length; i++) {
+        for (let j = 0; level.weights[i].length; j++) {
+          level.weights[i][j] = lerp(
+            level.weights[i][j],
+            Math.random() * 2 - 1,
+            amount
+          );
+        }
+      }
+    });
+  }
 }
 
 // we will have layer of neuron
